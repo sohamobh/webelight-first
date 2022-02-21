@@ -18,7 +18,12 @@ console.log(arr1);
 //use 3-it replaced copy
 
 let ac1 = [1, 2, 3];
-let ac2 = ac1; //copied array 1
-ac2.push(4, 5); //added extra values to the existing array
+let ac3 = [9, 8, 7, 6];
+//let ac2 = ac1; //copied array 1
+//ac2.push(4, 5); //added extra values to the existing array
+//console.log(ac2);
+//console.log(ac1); //it forgets its original values and takes up array 2's value
+
+let ac2 = [...ac1, 4, 5, ...ac3];
 console.log(ac2);
-console.log(ac1); //it forgets its original values and takes up array 2's value
+console.log(ac1);
