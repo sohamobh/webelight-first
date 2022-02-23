@@ -1,0 +1,1 @@
+//The new.target is very useful to inspect at runtime whether a function is being executed as a function or as a constructor.
