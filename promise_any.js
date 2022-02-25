@@ -1,10 +1,10 @@
 //when you only want the result from the first resolved promise
 let p1 = Promise.reject(111);
-let p2 = Promise.resolve(222);
+let p2 = Promise.reject(222);
 let p3 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 1000, 333);
+    setTimeout(reject, 1000, 333);
 });
-let p4 = Promise.resolve(444);
+let p4 = Promise.reject(444);
 
 Promise.any([p1, p2, p3, p4]) //p1 gets executed and shows failed. change the order of array to get different results
     .then((result) => {
@@ -13,3 +13,5 @@ Promise.any([p1, p2, p3, p4]) //p1 gets executed and shows failed. change the or
     .catch((result) => {
         console.log(`FAILED: ${result}`);
     })
+
+        //difference between any and race is in reject.
