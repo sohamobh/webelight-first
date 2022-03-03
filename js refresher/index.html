@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        "use strict"; //adds many restrictions to your javascript file
+
+        // let a = 12;
+        let a = 'String';
+        console.log(a);
+        document.addEventListener("click",function click(){
+            console.log("Clicked");
+            // alert("Hello");
+            let con = confirm("Are you sure?");
+            console.log(con); //returns true on clicking ok and false on cancel
+        })
+
+            let arr = [10,20,30,40];
+            console.log(arr);
+            console.log(this); //returns window object (global)
+            // let myfunc=(number)=> console.log("the number is "+this);
+            let obj={
+                a: this,
+                myfunc : (number)=> console.log("This number is " +this)
+            }
+            obj.myfunc();
+            console.log(obj.a);
+       
+    </script>
+</head>
+<body>
+    <h1>This is a javascript refresher file.</h1>
+</body>
+</html>
