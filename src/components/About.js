@@ -1,10 +1,30 @@
-import React from "react"
+import React, { useState } from "react"
 
 export default function About() {
-    let myStyle = {
-        color: "red",
-        backgroundColor: "blue",
+    const [myStyle, setMyStyle] = useState({
+        color: "black",
+        backgroundColor: "white",
+    })
+    const [buttonText, setBtnText] = useState("Enable dark mode")
+
+    const toggleStyle = () => {
+        if (myStyle.color == "black") {
+            setMyStyle({
+                color: "white",
+                backgroundColor: "black",
+                border: "1px solid white",
+            })
+            setBtnText("Enable light mode")
+        } else {
+            setMyStyle({
+                color: "black",
+                backgroundColor: "white",
+                border: "1px solid black",
+            })
+            setBtnText("Enable dark mode")
+        }
     }
+
     return (
         <div className="container" style={myStyle}>
             <h1 className="container my-3">ABOUT US</h1>
@@ -16,6 +36,7 @@ export default function About() {
                     <h2 className="accordion-header" id="flush-headingOne">
                         <button
                             className="accordion-button collapsed"
+                            style={myStyle}
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne"
@@ -31,7 +52,7 @@ export default function About() {
                         aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample"
                     >
-                        <div className="accordion-body">
+                        <div className="accordion-body" style={myStyle}>
                             Placeholder content for this accordion, which is
                             intended to demonstrate the{" "}
                             <code>.accordion-flush</code> class. This is the
@@ -43,6 +64,7 @@ export default function About() {
                     <h2 className="accordion-header" id="flush-headingTwo">
                         <button
                             className="accordion-button collapsed"
+                            style={myStyle}
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseTwo"
@@ -58,7 +80,7 @@ export default function About() {
                         aria-labelledby="flush-headingTwo"
                         data-bs-parent="#accordionFlushExample"
                     >
-                        <div className="accordion-body">
+                        <div className="accordion-body" style={myStyle}>
                             Placeholder content for this accordion, which is
                             intended to demonstrate the{" "}
                             <code>.accordion-flush</code> class. This is the
@@ -71,6 +93,7 @@ export default function About() {
                     <h2 className="accordion-header" id="flush-headingThree">
                         <button
                             className="accordion-button collapsed"
+                            style={myStyle}
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseThree"
@@ -86,7 +109,7 @@ export default function About() {
                         aria-labelledby="flush-headingThree"
                         data-bs-parent="#accordionFlushExample"
                     >
-                        <div className="accordion-body">
+                        <div className="accordion-body" style={myStyle}>
                             Placeholder content for this accordion, which is
                             intended to demonstrate the{" "}
                             <code>.accordion-flush</code> class. This is the
@@ -100,8 +123,12 @@ export default function About() {
                 </div>
             </div>
             <div className="container my-3">
-                <button type="button" class="btn btn-primary">
-                    Enable Dark mode
+                <button
+                    onClick={toggleStyle}
+                    type="button"
+                    className="btn btn-primary"
+                >
+                    {buttonText}
                 </button>
             </div>
         </div>

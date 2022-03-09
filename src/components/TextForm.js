@@ -13,12 +13,14 @@ export default function TextForm(props) {
         let newText = text.toLowerCase()
         setText(newText)
     }
-    const handleSentenceCount = () => {
-        // console.log("Lowercase was clicked" + text)
-        let count = text.split(".").length
-        //return count
-        document.write("Total numbers of sentences are = " + count)
-        //setText(newText)
+    const handleCopy = () => {
+        var text = document.getElementById("MyBox")
+        text.select()
+        navigator.clipboard.writeText(text.value)
+    }
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/)
+        setText(newText.join(" "))
     }
     const handleClearText = () => {
         // console.log("Clear was clicked" + text)
@@ -39,7 +41,7 @@ export default function TextForm(props) {
             <div className="container">
                 <h1>{props.heading}</h1>
                 <div className="my-3">
-                    {/* <label for="MyBox" class="form-label">Example textarea</label> */}
+                    {/* <label for="MyBox" className="form-label">Example textarea</label> */}
                     <textarea
                         className="form-control"
                         value={text}
@@ -62,15 +64,21 @@ export default function TextForm(props) {
                 </button>
                 <button
                     className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
-                    onClick={handleClearText}
+                    onClick={handleCopy}
                 >
-                    Clear text
+                    Copy Text
                 </button>
                 <button
                     className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
-                    onClick={handleSentenceCount}
+                    onClick={handleExtraSpaces}
                 >
-                    Sentence Count
+                    Handle Extra Spaces
+                </button>
+                <button
+                    className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
+                    onClick={handleClearText}
+                >
+                    Clear text
                 </button>
             </div>
             <div className="container my-3">
@@ -83,7 +91,7 @@ export default function TextForm(props) {
                     {0.008 * text.split(" ").length} minutes reading time.
                     {/*1 word = 0.008 minutes(1/125) multiplied by length*/}
                 </p>
-                {/*<p>Total number of sentences are:-{handleClearText(num)} </p>*/}
+                <p> Total numbers of sentences are {text.split(".").length}</p>
 
                 <h3>Preview</h3>
                 <p>{text}</p>

@@ -10,7 +10,7 @@ function App() {
         <>
             <Navbar title="TextUtils"></Navbar>
             <div className="=container my-3">
-                {/* <TextForm heading="Enter the text to manipulate"></TextForm>*/}
+                <TextForm heading="Enter the text to manipulate"></TextForm>
                 <About></About>
             </div>
         </>
