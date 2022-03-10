@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import logo from "./logo.svg"
 import "./App.css"
 import Navbar from "./components/Navbar"
@@ -60,20 +61,30 @@ function App() {
     }
     return (
         <>
-            <Navbar
-                title="TextUtils"
-                mode={mode}
-                togglemode={togglemode}
-            ></Navbar>
-            <Alert alert={alert}></Alert>
-            <div className="container my-3">
-                <TextForm
-                    showAlert={showAlert}
-                    heading="Enter the text to manipulate"
+            <Router>
+                <Navbar
+                    title="TextUtils"
                     mode={mode}
-                ></TextForm>
-                <About></About>
-            </div>
+                    togglemode={togglemode}
+                ></Navbar>
+                <Alert alert={alert}></Alert>
+                <div className="container my-3">
+                    <Routes>
+                        <Route exact path="/about" element={<About />} />
+                        <Route
+                            exact //finds the exact matching path
+                            path="/"
+                            element={
+                                <TextForm
+                                    showAlert={showAlert}
+                                    heading="Enter the text to manipulate"
+                                    mode={mode}
+                                ></TextForm>
+                            }
+                        ></Route>
+                    </Routes>
+                </div>
+            </Router>
         </>
     )
 }
