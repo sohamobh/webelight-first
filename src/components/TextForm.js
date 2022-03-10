@@ -7,25 +7,33 @@ export default function TextForm(props) {
         // console.log("Uppercase was clicked" + text)
         let newText = text.toUpperCase()
         setText(newText)
+        props.showAlert("Text is converted to Uppercase!", "success")
     }
     const handleLowClick = () => {
         // console.log("Lowercase was clicked" + text)
         let newText = text.toLowerCase()
         setText(newText)
+        props.showAlert("Text is converted to Lowercase!", "success")
     }
     const handleCopy = () => {
         var text = document.getElementById("MyBox")
         text.select()
         navigator.clipboard.writeText(text.value)
+        props.showAlert("Text copied to clipboard!", "success")
     }
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/)
         setText(newText.join(" "))
+        props.showAlert("Extra spaces removed!", "success")
     }
     const handleClearText = () => {
         // console.log("Clear was clicked" + text)
         let newText = ""
         setText(newText)
+        props.showAlert(
+            "Text box is cleared. Enter new text to manipulate!",
+            "success"
+        )
     }
     const handleOnChange = (event) => {
         // console.log("On change")
@@ -40,12 +48,16 @@ export default function TextForm(props) {
         <>
             <div className="container">
                 <h1>{props.heading}</h1>
-                <div className="my-3">
+                <div className="mb-3">
                     {/* <label for="MyBox" className="form-label">Example textarea</label> */}
                     <textarea
                         className="form-control"
                         value={text}
                         onChange={handleOnChange}
+                        style={{
+                            backgroundColor:
+                                props.mode === "light" ? "dark" : "light",
+                        }}
                         id="MyBox"
                         rows="8"
                     ></textarea>
@@ -94,7 +106,11 @@ export default function TextForm(props) {
                 <p> Total numbers of sentences are {text.split(".").length}</p>
 
                 <h3>Preview</h3>
-                <p>{text}</p>
+                <p>
+                    {text.length > 0
+                        ? text
+                        : "Enter your text in the text box to preview it here"}
+                </p>
             </div>
         </>
     )
