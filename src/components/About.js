@@ -1,32 +1,41 @@
 import React, { useState } from "react"
 
-export default function About() {
-    const [myStyle, setMyStyle] = useState({
-        color: "black",
-        backgroundColor: "white",
-    })
+export default function About(props) {
+    // const [myStyle, setMyStyle] = useState({
+    //     color: "black",
+    //     backgroundColor: "white",
+    // })
+    let myStyle = {
+        color: props.mode === "dark" ? "white" : "black",
+        backgroundColor: props.mode === "dark" ? "#4a5158" : "white",
+        border: "2px solid",
+        borderColor: props.mode === "dark" ? "white" : "black",
+    }
     const [buttonText, setBtnText] = useState("Enable dark mode")
 
-    const toggleStyle = () => {
-        if (myStyle.color == "black") {
-            setMyStyle({
-                color: "white",
-                backgroundColor: "black",
-                border: "1px solid white",
-            })
-            setBtnText("Enable light mode")
-        } else {
-            setMyStyle({
-                color: "black",
-                backgroundColor: "white",
-                border: "1px solid black",
-            })
-            setBtnText("Enable dark mode")
-        }
-    }
+    // const toggleStyle = () => {
+    //     if (myStyle.color == "black") {
+    //         setMyStyle({
+    //             color: "white",
+    //             backgroundColor: "black",
+    //             border: "1px solid white",
+    //         })
+    //         setBtnText("Enable light mode")
+    //     } else {
+    //         setMyStyle({
+    //             color: "black",
+    //             backgroundColor: "white",
+    //             border: "1px solid black",
+    //         })
+    //         setBtnText("Enable dark mode")
+    //     }
+    // }
 
     return (
-        <div className="container my-3" style={myStyle}>
+        <div
+            className="container my-3"
+            style={{ color: props.mode === "dark" ? "white" : "black" }}
+        >
             <h1 className="container my-3">ABOUT US</h1>
             <div
                 className="accordion accordion-flush my-3"
@@ -43,7 +52,7 @@ export default function About() {
                             aria-expanded="false"
                             aria-controls="flush-collapseOne"
                         >
-                            Accordion Item #1
+                            <strong>Analyse your text</strong>
                         </button>
                     </h2>
                     <div
@@ -53,10 +62,9 @@ export default function About() {
                         data-bs-parent="#accordionFlushExample"
                     >
                         <div className="accordion-body" style={myStyle}>
-                            Placeholder content for this accordion, which is
-                            intended to demonstrate the{" "}
-                            <code>.accordion-flush</code> class. This is the
-                            first item's accordion body.
+                            TextUtils is a very helpful applicaion that nakes it
+                            easy for the user to manipulate their text the way
+                            they want.
                         </div>
                     </div>
                 </div>
@@ -71,7 +79,7 @@ export default function About() {
                             aria-expanded="false"
                             aria-controls="flush-collapseTwo"
                         >
-                            Accordion Item #2
+                            <strong>Free to use</strong>
                         </button>
                     </h2>
                     <div
@@ -81,11 +89,9 @@ export default function About() {
                         data-bs-parent="#accordionFlushExample"
                     >
                         <div className="accordion-body" style={myStyle}>
-                            Placeholder content for this accordion, which is
-                            intended to demonstrate the{" "}
-                            <code>.accordion-flush</code> class. This is the
-                            second item's accordion body. Let's imagine this
-                            being filled with some actual content.
+                            It is a free application that makes it even more
+                            exciting. Anyone and every one can use it from any
+                            where and every where
                         </div>
                     </div>
                 </div>
@@ -100,7 +106,7 @@ export default function About() {
                             aria-expanded="false"
                             aria-controls="flush-collapseThree"
                         >
-                            Accordion Item #3
+                            <strong>Easy to understand</strong>
                         </button>
                     </h2>
                     <div
@@ -110,27 +116,21 @@ export default function About() {
                         data-bs-parent="#accordionFlushExample"
                     >
                         <div className="accordion-body" style={myStyle}>
-                            Placeholder content for this accordion, which is
-                            intended to demonstrate the{" "}
-                            <code>.accordion-flush</code> class. This is the
-                            third item's accordion body. Nothing more exciting
-                            happening here in terms of content, but just filling
-                            up the space to make it look, at least at first
-                            glance, a bit more representative of how this would
-                            look in a real-world application.
+                            TextUtils is one of the easitest applicaionto use.
+                            One can get hands on it very quickly.
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="container my-3">
-                <button
-                    onClick={toggleStyle}
-                    type="button"
-                    className="btn btn-primary"
-                >
-                    {buttonText}
-                </button>
-            </div>
         </div>
+        // <div className="container my-3">
+        //     <button
+        //         onClick={toggleStyle}
+        //         type="button"
+        //         className="btn btn-primary"
+        //     >
+        //         {buttonText}
+        //     </button>
+        // </div>
     )
 }

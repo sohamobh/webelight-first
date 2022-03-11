@@ -17,8 +17,9 @@ export default function TextForm(props) {
     }
     const handleCopy = () => {
         var text = document.getElementById("MyBox")
-        text.select()
+        text.select() //we dont need to select and deselect anymore
         navigator.clipboard.writeText(text.value)
+        document.getSelection().removeAllRanges()
         props.showAlert("Text copied to clipboard!", "success")
     }
     const handleExtraSpaces = () => {
@@ -63,31 +64,36 @@ export default function TextForm(props) {
                     ></textarea>
                 </div>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleUpClick}
                 >
                     Convert to Uppercase
                 </button>
                 <button
-                    className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1" //mx-1 creates space between 2 components; here, buttons
                     onClick={handleLowClick}
                 >
                     Convert to Lowercase
                 </button>
                 <button
-                    className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1" //mx-1 creates space between 2 components; here, buttons
                     onClick={handleCopy}
                 >
                     Copy Text
                 </button>
                 <button
-                    className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1" //mx-1 creates space between 2 components; here, buttons
                     onClick={handleExtraSpaces}
                 >
                     Handle Extra Spaces
                 </button>
                 <button
-                    className="btn btn-primary mx-1" //mx-1 creates space between 2 components; here, buttons
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1" //mx-1 creates space between 2 components; here, buttons
                     onClick={handleClearText}
                 >
                     Clear text
@@ -96,14 +102,31 @@ export default function TextForm(props) {
             <div className="container my-3">
                 <h2>Your text summary</h2>
                 <p>
-                    {text.split(" ").length} words and {text.length} characters
+                    {
+                        text.split(/\s+/).filter((element) => {
+                            return element.length !== 0
+                        }).length
+                    }{" "}
+                    words and {text.length} characters
                     {/*number count*/}
                 </p>
                 <p>
-                    {0.008 * text.split(" ").length} minutes reading time.
+                    {0.008 *
+                        text.split(" ").filter((element) => {
+                            return element.length !== 0
+                        }).length}{" "}
+                    minutes reading time.
                     {/*1 word = 0.008 minutes(1/125) multiplied by length*/}
                 </p>
-                <p> Total numbers of sentences are {text.split(".").length}</p>
+                <p>
+                    {" "}
+                    Total numbers of sentences are{" "}
+                    {
+                        text.split(".").filter((element) => {
+                            return element.length !== 0
+                        }).length
+                    }
+                </p>
 
                 <h3>Preview</h3>
                 <p>
