@@ -1,0 +1,96 @@
+.todo_style {
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+input {
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    border-radius: 50px;
+    height: 50px;
+}
+
+.input_box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    padding: 30px 30px;
+    font-size: 25px;
+    border: none;
+    transition: 0.2s;
+    box-shadow: inset 0 0 5px black;
+}
+
+.input_box:focus {
+    box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+.button_style {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 12px;
+    border-radius: 50px;
+    right: 0px;
+    border: none;
+    font-size: 15px;
+    background-color: grey;
+    color: white;
+    transition: 0.2s all;
+    box-shadow: 0 0 10px black;
+}
+.button_style:hover {
+    background: white;
+    color: grey;
+}
+.button_style:active {
+    transform: scale(0.8);
+    box-shadow: 0 0 5px black;
+}
+
+.todos_single {
+    display: flex;
+    width: 32%;
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 15px;
+    background: grey;
+}
+.todos_single--text {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+.todos_single--text:focus {
+    outline: none;
+}
+.icon {
+    margin-left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+@media (max-width: 1200px) {
+    .todos__single {
+        width: 40%;
+    }
+}
+
+@media (max-width: 700px) {
+    .input {
+        width: 95%;
+    }
+    .todo_style {
+        width: 95%;
+    }
+    .todos_single {
+        width: 100%;
+    }
+}
