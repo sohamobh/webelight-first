@@ -8,15 +8,26 @@ import Edit from "./component/Edit"
 const App = () => {
     const [inputList, setInputList] = useState("")
     const [newText, setNewText] = useState()
+    const [editTodo, setEditTodo] = useState("")
     const [items, setItems] = useState([])
+    const [isEdit, setIsEdit] = useState(false)
     const handleItems = (event) => {
         setInputList(event.target.value)
+    }
+    const handleEditTodo = (target, value) => {
+        setEditTodo(target.value)
+    }
+    const editItem = (id) => {
+        setIsEdit(true)
+        setEditTodo(items[id])
+        return (items[id] = editTodo)
     }
     const handleClick = () => {
         setItems((oldItems) => {
             return [...oldItems, inputList]
         })
         setInputList("")
+        //onclick(setInputList(inputList))
     }
     const deleteItems = (id) => {
         console.log("Deleted")
@@ -26,7 +37,7 @@ const App = () => {
             })
         })
     }
-    const EditItems = (id) => {}
+    //const EditItems = (id) => {}
     //     console.log("Edit")
     //     setItems((newText) => {
     //         return setNewText(newText).filter((ele, index) => {
@@ -60,10 +71,14 @@ const App = () => {
                             )
                         })}
                     </ol>
+
                     <button
+                        type="text"
+                        value={editTodo}
+                        onChange={handleEditTodo}
                         disabled={inputList.length === 0}
                         className="button_style"
-                        onClick={EditItems}
+                        onClick={editItem}
                     >
                         Edit
                     </button>
